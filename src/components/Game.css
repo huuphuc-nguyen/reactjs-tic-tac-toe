@@ -59,9 +59,8 @@ ul {
 }
 
 .hovered {
-    /* Add your hover effect styling */
-    background-color: red; /* Example background color change on hover */
-    color: #333; /* Example text color change on hover */
+    background-color: red;
+    color: white; 
 }
 
 @media (max-width: 600px) {
