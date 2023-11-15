@@ -10,7 +10,7 @@
     padding: 0pt;
     text-align: center;
     color: black;
-    aspect-ratio: 1/1;
+    height: max(11vh,50px);
     width: max(11vh,50px);
     margin: 5pt;
 }
