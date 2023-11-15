@@ -8,7 +8,7 @@ const Square = (props) => {
 
     return (
         <div>
-            <button className={'square button-square'} 
+            <button className={'button-square'} 
             onClick={props.onClickHandler}
             onMouseEnter={() => setIsHover(true)}
             onMouseLeave={() => setIsHover(false)}>

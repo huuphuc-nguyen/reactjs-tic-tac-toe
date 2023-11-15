@@ -1,9 +1,3 @@
-.square {
-    height: 11vh;
-    width: 11vh;
-    margin: 5pt;
-}
-
 .button-square {
     border-radius: 10pt;
     border-width: 3pt;
@@ -16,6 +10,9 @@
     padding: 0pt;
     text-align: center;
     color: black;
+    aspect-ratio: 1/1;
+    width: max(11vh,50px);
+    margin: 5pt;
 }
 .button-square:hover{
     cursor: pointer;
