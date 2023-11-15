@@ -13,7 +13,7 @@ const Board = ({xIsNext, squares, onPlay, startGame}) => {
     setIsModalOpen(false);
     startGame();
   };
-  
+
   const handleCancel = () => {
     setIsModalOpen(false);
   };
@@ -94,7 +94,7 @@ const Board = ({xIsNext, squares, onPlay, startGame}) => {
   return (
     <div className='board'>
       <Modal 
-        title={<div style={{textAlign: 'center', fontSize : '2vh'}}>🎉 Congratulation 🎉</div>} 
+        title={<div style={{textAlign: 'center'}}>🎉 Congratulation 🎉</div>} 
         open={isModalOpen} onOk={handleOk} onCancel={handleCancel}
         footer={[
           <Button key="back" onClick={handleCancel}>
@@ -105,9 +105,9 @@ const Board = ({xIsNext, squares, onPlay, startGame}) => {
           </Button>,
         ]}>
              {winner ? (
-              <span style={{fontSize: '2vh'}}>{calculateWinner(squares)} is the winner</span>
+              <span>{calculateWinner(squares)} is the winner</span>
               ) : (
-                  <span style={{fontSize: '2vh'}}>The game is a draw!</span>
+                  <span>The game is a draw!</span>
               )}
       </Modal>
 
