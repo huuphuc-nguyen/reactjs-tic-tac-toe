@@ -1,0 +1,23 @@
+.square {
+    height: 11vh;
+    width: 11vh;
+    margin: 5pt;
+}
+
+.button-square {
+    border-radius: 10pt;
+    border-width: 3pt;
+    border-color: white;
+    border-style: solid;
+    background-color: bisque;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    transition: transform 0.3s ease;
+    font-size: 7vh;
+    padding: 0pt;
+    text-align: center;
+    color: black;
+}
+.button-square:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+}

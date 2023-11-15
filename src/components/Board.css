@@ -1,0 +1,26 @@
+
+.board {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.board-row {
+    display: flex;
+    flex-direction: row;
+    opacity: 0;
+    animation: fadeInFromLeft 0.5s ease forwards;
+  }
+  
+
+ 
+  
+@keyframes fadeInFromLeft {
+from {
+    transform: translateX(-50px);
+}
+to {
+    opacity: 1;
+    transform: translateX(0);
+}
+}

@@ -1,0 +1,100 @@
+ul {
+    list-style-type: none;
+}
+
+.button-game {
+    height: 8vh;
+    width: 8vh;
+    border-radius: 3vh;
+    border-width: 3pt;
+    border-color: white;
+    border-style: solid;
+    background-color: bisque;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    transition: transform 0.3s ease;
+    font-size: 3vh;
+    padding: 1vh;
+    text-align: center;
+    color: black;
+    margin: 10pt;
+
+    animation: fadeInFromBottom 0.5s ease forwards;
+}
+
+.button-game:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.game-buttons{
+    display: flex;
+    justify-content: center;
+}
+
+.game {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+  }
+
+.button-info {
+    border-radius: 10pt;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border: none;
+    margin: 3pt;
+    padding: 8pt;
+    transition: transform 0.3s ease;    
+
+    animation: fadein 0.5s ease-out forwards;
+}
+
+.button-info:hover {
+    transform: scale(1.1);
+}
+
+.game-info{     
+    display: flex;
+    flex-direction: column;
+}
+
+.hovered {
+    /* Add your hover effect styling */
+    background-color: red; /* Example background color change on hover */
+    color: #333; /* Example text color change on hover */
+}
+
+@media (max-width: 600px) {
+    .game {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .game-info{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+}
+
+@keyframes fadein{
+    from {
+        opacity: 0; /* Start with opacity 0 */
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInFromBottom{
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
