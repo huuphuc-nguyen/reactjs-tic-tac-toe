@@ -10,7 +10,7 @@
 ## III. Some knowledge 
 - HTML/CSS/JS.
 - ReactJs.
-## IV. Demo
+## IV. Demo link
 - Try the game [here](https://tictactoe-felixnguyen.vercel.app/).
 
 
