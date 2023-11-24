@@ -1,4 +1,4 @@
-# Tic-Tac-Toe 
+# 🕹️Tic-Tac-Toe🕹️
 ## I. Project description
 - This project following a tutorial using ReactJs. You can find the instruction [here](https://react.dev/learn/tutorial-tic-tac-toe).
 ## II.How to run the program
