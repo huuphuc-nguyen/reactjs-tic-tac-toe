@@ -3,7 +3,7 @@ name: Deploy Portfolio To VPS
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   deploy:
