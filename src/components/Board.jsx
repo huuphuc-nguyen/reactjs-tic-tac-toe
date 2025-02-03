@@ -101,7 +101,7 @@ const Board = ({xIsNext, squares, onPlay, startGame}) => {
             OK
           </Button>,
           <Button key="submit" type="primary" onClick={handleOk}>
-            Start new game test
+            Start new game
           </Button>,
         ]}>
              {winner ? (
