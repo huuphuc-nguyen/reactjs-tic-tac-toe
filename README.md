@@ -11,6 +11,6 @@
 - HTML/CSS/JS.
 - ReactJs.
 ## IV. Demo link
-- Try the game [here](https://tictactoe-felixnguyen.vercel.app/).
+- Try the game [here](https://felixnguyen.dev/tictactoe/).
 
 
