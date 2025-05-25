@@ -1,6 +1,6 @@
-
 name: Build, Push Image and Deploy
 on:
+  workflow_dispatch: 
   push:
     branches:
       - "master"
@@ -22,6 +22,19 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Extract version from package.json
+        id: version
+        run: |
+          echo "VERSION=$(jq -r .version package.json)" >> $GITHUB_OUTPUT
+          
+      - name: Set image tag
+        id: image-tag
+        run: |
+          if [[ "${{ github.ref_name }}" == "master" || "${{ github.ref_name }}" == "production" ]]; then
+            echo "tag=${{ steps.version.outputs.VERSION }}" >> $GITHUB_OUTPUT
+          else
+            echo "tag=${{ github.sha }}" >> $GITHUB_OUTPUT
+          fi
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
@@ -37,22 +50,26 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/${{ github.repository }}:${{ github.sha }}
+          tags: |
+            ghcr.io/${{ github.repository }}:${{ steps.image-tag.outputs.tag }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
           platforms: linux/amd64,linux/arm64
 
-      - name: SSH into VPS and deploy
-        uses: appleboy/ssh-action@v1.2.0
-        with:
-          host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_USER }}
-          key: ${{ secrets.VPS_SSH_KEY }}
-          port: ${{ secrets.VPS_PORT }}
-          proxy_port: ${{ secrets.VPS_PORT }}
-          script: |
-            docker login ghcr.io -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
-            cd ~/projects/my-projects
-            SHA=${{ github.sha }}
-            sed -i "s|\(ghcr.io/huuphuc-nguyen/reactjs-tic-tac-toe:\)[^[:space:]]\+|\1$SHA|" my-projects-stack.yml
-            docker stack deploy --with-registry-auth -c my-projects-stack.yml my-projects
+      - name: Update GitOps repo with new image tag
+        run: |
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+  
+          git clone https://x-access-token:${{ secrets.GH_PAT }}@github.com/huuphuc-nguyen/gitops-infras.git
+          cd gitops-infras
+
+          # Update values.yaml image tag
+          yq eval ".image.tag = \"${{ steps.image-tag.outputs.tag }}\"" -i projects/personal-project/apps/tictactoe/values.yaml
+
+          # Also update Chart.yaml appVersion and/or version
+          yq eval ".appVersion = \"${{ steps.version.outputs.VERSION }}\"" -i projects/personal-project/apps/tictactoe/Chart.yaml
+          
+          git add .
+          git commit -m "Cicd:Update image tag of ImageReveal to ${{ steps.image-tag.outputs.tag }}"
+          git push
